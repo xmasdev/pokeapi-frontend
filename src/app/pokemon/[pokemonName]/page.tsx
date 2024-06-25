@@ -68,7 +68,7 @@ const Page = ({params}: {params: {pokemonName: string}}) => {
         </div>
         {/* Left part start */}
         <div className="w-full text-white flex flex-col gap-4 justify-start pl-3 pr-3 lg:pl-20">
-          <h1 className="text-5xl mb-1">{titleCase(pokemonName)}</h1>
+          <h1 className="text-5xl mb-1">{titleCase(data.name)}</h1>
           {!isLoadingSpecies && !isErrorSpecies && (<p className="text-lg">
             {speciesData.flavor_text_entries.find((entry: any) => entry.language.name === "en").flavor_text}
           </p>)}
