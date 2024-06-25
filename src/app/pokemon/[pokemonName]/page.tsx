@@ -44,7 +44,7 @@ const Page = ({params}: {params: {pokemonName: string}}) => {
   if (isLoading){
     setProgress(50)
     return (
-      <div className="text-white flex flex-col justify-center items-center gap-5 mt-10 min-h-screen">
+      <div className="text-white flex flex-col justify-center items-center gap-5 mt-10">
         <Image src={"/loading.gif"} alt="loading" height={200} width={200}></Image>
       </div>
     )
@@ -52,7 +52,7 @@ const Page = ({params}: {params: {pokemonName: string}}) => {
   if (isError){
     setProgress(100)
     return (
-      <div className="text-white flex flex-col justify-center items-center gap-5 mt-10 min-h-screen">
+      <div className="text-white flex flex-col justify-center items-center gap-5 mt-10">
         <h1 className="text-3xl"> Error </h1>
         <h2 className="text-xl">Could not find {[pokemonName]}</h2>
       </div>
@@ -61,10 +61,13 @@ const Page = ({params}: {params: {pokemonName: string}}) => {
 
   setProgress(100)
   return (
-    <div className="pb-8">
-      <div className="flex justify-center gap-5 mt-7">
-
-        <div className="w-full text-white flex flex-col gap-4 justify-start pl-20">
+    <div>
+      <div className="flex justify-center gap-5 mt-7 lg:flex-nowrap flex-wrap">
+      <div className="w-full justify-center items-center flex lg:hidden">
+          <Image src={data.sprites.other["official-artwork"].front_default} alt="image" width={500} height={500} />
+        </div>
+        {/* Left part start */}
+        <div className="w-full text-white flex flex-col gap-4 justify-start pl-3 pr-3 lg:pl-20">
           <h1 className="text-5xl mb-1">{titleCase(pokemonName)}</h1>
           {!isLoadingSpecies && !isErrorSpecies && (<p className="text-lg">
             {speciesData.flavor_text_entries.find((entry: any) => entry.language.name === "en").flavor_text}
@@ -137,20 +140,23 @@ const Page = ({params}: {params: {pokemonName: string}}) => {
           </div>
 
         </div>
-        <div className="w-full flex justify-center items-center">
+
+        {/* Left part end */}
+        <div className="w-full justify-center items-center hidden lg:flex">
           <Image src={data.sprites.other["official-artwork"].front_default} alt="image" width={500} height={500} />
         </div>
       </div>
 
 
 
-      <div className="flex flex-col items-start justify-center gap-3 pl-10 mt-10 ">
+      <div className="flex flex-col items-start justify-center gap-3 pl-10 mt-10">
             <h2 className="text-3xl text-white font-serif font-semibold text-center w-full mb-3">Evolution Chain</h2>
-            <div className="flex justify-center gap-5 items-center text-white w-full">
+            <div className="flex justify-center gap-5 items-center text-white w-full flex-col lg:flex-row">
               {evolutionChain && evolutionChain.map((pokemon: string, index: number) => (
                 <React.Fragment key={`evolution-${pokemon}`}>
                   <Card pokemonName={pokemon}/>
-                  {index < evolutionChain.length - 1 && <span className="mx-2 text-5xl">→</span>}
+                  {index < evolutionChain.length - 1 && <span className="mx-2 text-5xl hidden lg:inline">→</span>}
+                  {index < evolutionChain.length - 1 && <span className="mx-2 text-5xl lg:hidden">↓</span>}
                 </React.Fragment>
               ))}
           </div>
@@ -158,12 +164,14 @@ const Page = ({params}: {params: {pokemonName: string}}) => {
 
       <div className="flex flex-col items-start lg:pl-20 sm:pl-10 mt-5">
         <h2 className="text-3xl text-white font-sans font-semibold mb-5">Sprites</h2>
-        <div className="grid grid-cols-4 gap-5 w-full">
+        <div className="grid grid-cols-2 place-items-center lg:grid-cols-4 gap-5 w-full">
           {Object.keys(data.sprites).map((key: string) => {
             if (data.sprites[key] && typeof data.sprites[key] === "string"){
               return (
-                <div key={key} className="flex flex-col items-center justify-center bg-gray-200 rounded-md h-48 w-48">
-                  <Image src={data.sprites[key]} alt="sprite" width={130} height={130}/>
+                <div key={key} className="flex flex-col items-center justify-center bg-gray-200 rounded-md h-32 w-32 lg:h-48 lg:w-48">
+                  <div className="w-20 h-20 lg:h-32 lg:w-32">
+                  <Image src={data.sprites[key]} alt="sprite" width={130} height={130} />
+                  </div>
                   <p className="text-base">{editSpriteString(key)}</p>
                 </div>
               )
@@ -173,8 +181,10 @@ const Page = ({params}: {params: {pokemonName: string}}) => {
           {Object.keys(data.sprites.versions["generation-v"]["black-white"].animated).map((key: string) => {
             if (data.sprites.versions["generation-v"]["black-white"].animated[key] && typeof data.sprites.versions["generation-v"]["black-white"].animated[key] === "string"){
               return (
-                <div key={key} className="flex flex-col items-center justify-center bg-gray-200 rounded-md h-48 w-48">
+                <div key={key} className="flex flex-col items-center justify-center bg-gray-200 rounded-md h-32 w-32 lg:h-48 lg:w-48 gap-4">
+                  <div className="h-20 w-20">
                   <Image src={data.sprites.versions["generation-v"]["black-white"].animated[key]} alt="sprite" width={130} height={130}/>
+                  </div>
                   <p className="text-base">{editSpriteString(key)}</p>
                 </div>
               )

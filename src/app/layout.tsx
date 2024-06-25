@@ -27,7 +27,9 @@ export default function RootLayout({
         <ProgressProvider>
           <LoadingBarComponent />
           <Navbar />
-          {children}
+          <div className="min-h-screen">
+            {children}
+          </div>
           <Footer />
         </ProgressProvider>
         </main>

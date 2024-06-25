@@ -35,7 +35,7 @@ const CardInside = ({pokemonName}: {pokemonName: string}) => {
   }, [isLoading, data])
 
   return (
-    <Link href={`/pokemon/${pokemonName}`} className="flex flex-col items-center justify-center sm:gap-1 lg:gap-2 rounded-md bg-white h-48 w-48 hover:cursor-pointer hover:scale-110 hover:shadow-lg duration-100 hover:animate-pulse">
+    <Link href={`/pokemon/${pokemonName}`} className="flex flex-col items-center justify-center sm:gap-1 lg:gap-2 rounded-md bg-white lg:h-48 lg:w-48 hover:cursor-pointer hover:scale-110 hover:shadow-lg duration-100 hover:animate-pulse h-48 w-40">
       <Image id={pokemonName} src={imageURL} alt='pokemon' width={100} height={100} objectFit="cover"/>
       <div className="flex flex-col items-center justify-center">
         <p className="text-gray-800">{titleCase(pokemonName)}</p>
