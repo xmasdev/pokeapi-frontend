@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import { ProgressProvider } from "@/Providers/progressProvider";
 import LoadingBarComponent from "@/components/LoadingBarComponent";
 import Footer from "@/components/Footer";
+import Image from "next/image";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +30,15 @@ export default function RootLayout({
           <LoadingBarComponent />
           <Navbar />
           <div className="min-h-screen">
+          <div className="text-white flex flex-col items-center justify-center gap-5 pt-3">
+            <Link href={"/"}>
+                <div className="flex items-center justify-center gap-3">
+                <h1 className="text-center text-2xl font-bold">PokéWonk</h1>
+                <Image src="/logo.svg" alt="logo" width={30} height={30}></Image>
+                </div>
+              </Link>
+              <p className="text-center text-xl">A pokédex built using the pokéAPI</p>
+            </div>
             {children}
           </div>
           <Footer />
