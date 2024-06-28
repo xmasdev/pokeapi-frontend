@@ -28,7 +28,7 @@ const Footer = () => {
             </ul>
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400"><Link href="https://www.pokemon.com/" className="hover:underline">Pokémon</Link> is a registered trademark of Ninetendo and GameFreak</span>
+        <span className="block text-sm text-gray-500 sm:text-center dark:text-gray-400"><Link href="https://www.pokemon.com/" className="hover:underline">Pokémon</Link> is a registered trademark of Nintendo and GameFreak</span>
     </div>
 </footer>
 
