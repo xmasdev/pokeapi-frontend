@@ -1,5 +1,5 @@
 export const fetchPokemon = async (name: string) => {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+  const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
   if (response.status != 200){
     throw new Error('Pokemon not found')
   }
